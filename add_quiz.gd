@@ -9,6 +9,7 @@ extends Control
 @onready var option_d := $MarginContainer/VBoxContainer/GridContainer/VBoxContainer/OptionDInput
 @onready var question_type := $MarginContainer/VBoxContainer/HBoxContainer/QuestionTypeInput
 @onready var quiz_name := $MarginContainer/VBoxContainer/HBoxContainer2/QuizName
+@onready var question_count := $MarginContainer/VBoxContainer/HBoxContainer3/TotalQuestionCountText
 
 var questions = []
 
@@ -44,6 +45,17 @@ func add_question():
 		var question = question_input.text
 		var answer = identification_input.text
 		add_identification_question(question, answer)
+	
+	clear_inputs()
+
+func clear_inputs():
+	question_input.clear()
+	identification_input.clear()
+	option_a.clear()
+	option_b.clear()
+	option_c.clear()
+	option_d.clear()
+	mc_answer_input.select(-1)
 
 
 func save_questions_to_file():
@@ -60,7 +72,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	question_count.text = str(questions.size())
 
 
 func _on_question_type_input_item_selected(index: int) -> void:
@@ -89,6 +101,29 @@ func disable_identification():
 	$MarginContainer/VBoxContainer/IdentificationText.hide()
 	identification_input.hide()
 
+
+func show_input_error_alert(message: String):
+	$AcceptDialog.dialog_text = message
+	$AcceptDialog.popup_centered()
+
+func check_input()->bool:
+	if (question_input.text == ""):
+		show_input_error_alert("Question text is missing")
+		return false
+	if (question_type.selected == 0):
+		if (option_a.text == "" or option_b.text == "" or option_c.text == "" or option_d.text == ""):
+			show_input_error_alert("Add at least one option")
+			return false
+		if (mc_answer_input.selected < 0):
+			show_input_error_alert("Select the correct answer")
+			return false
+	
+	if (question_type.selected == 1):
+		if (identification_input.text == ""):
+			show_input_error_alert("Identification answer missing")
+			return false
+	
+	return true
 
 func _on_save_btn_pressed() -> void:
 	add_question()

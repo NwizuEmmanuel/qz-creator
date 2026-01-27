@@ -27,6 +27,21 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 4
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalQuestionText" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Total question: "
+
+[node name="TotalQuestionCountText" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "View Questions"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -168,6 +183,8 @@ theme_override_constants/margin_top = 30
 [node name="SaveBtn" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "save"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/QuestionTypeInput" to="." method="_on_question_type_input_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/SaveBtn" to="." method="_on_save_btn_pressed"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmxtxcxvmfcj2"]
+[gd_scene format=3 uid="uid://bmxtxcxvmfcj2"]
 
-[ext_resource type="Script" uid="uid://dg1y6r60hsk6y" path="res://home.gd" id="1_tt30a"]
+[ext_resource type="Script" uid="uid://dg1y6r60hsk6y" path="res://scripts/home.gd" id="1_tt30a"]
 
-[node name="Home" type="Control"]
+[node name="Home" type="Control" unique_id=1506631782]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tt30a")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=9994451]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
